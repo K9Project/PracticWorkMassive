@@ -4,7 +4,7 @@ using namespace std;
 
 int main() {
 
-    const int ar = 4;
+    const int ar = 5;
 
     int array[ar][ar];
 
