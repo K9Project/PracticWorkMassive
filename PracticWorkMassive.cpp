@@ -1,46 +1,32 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-#include <time.h>
-#include <ctime> 
+#include <ctime>
 
-using namespace std;
+int main()
+{
+	const int N = 5;
+	int sum = 0;
+	int arr[N][N];
 
-int main() {
+	struct tm buf;
+	time_t t = time(NULL);
+	localtime_s(&buf, &t);
+	int index = buf.tm_mday % N;
 
-    const int ar = 5;
+	std::cout << "Array:" << std::endl;
+	for (int i = 0; i < N; ++i)
+	{
+		for (int j = 0; j < N; ++j)
+		{
+			arr[i][j] = i + j;
+			std::cout << arr[i][j] << " ";
+			if (index == i)
+			{
+				sum += arr[index][j];
+			}
+		}
+		std::cout << std::endl;
+	}
+	std::cout << "\nSum of elements in row " << index << " : " << sum << std::endl;
 
-    int array[ar][ar];
-
-    for (int i = 0; i < ar; i++) 
-        {
-        for (int j = 0; j < ar; j++) {
-            array[i][j] = i + j;
-        }
-    }
-
-    for (int i = 0; i < ar; i++) 
-        {
-        for (int j = 0; j < ar; j++) {
-            cout << array[i][j] << " " ;
-        }
-        cout << endl;
-    }
-
-    {
-        time_t mytime = time(NULL);
-        struct tm* now = localtime(&mytime);
-        printf("\nDate: %d.%d.%d\n", now->tm_mday, now->tm_mon + 1, now->tm_year + 1900);
-       
-       
-    }
-    {
-
-    }
-   
-    
-    
-    return 0;
-
+	return 0;
 }
-
-
